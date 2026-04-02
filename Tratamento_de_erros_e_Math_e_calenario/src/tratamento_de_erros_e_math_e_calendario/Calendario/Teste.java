@@ -20,7 +20,5 @@ public class Teste {
         Calendar calendario = new GregorianCalendar();
         int dia= calendario.get(Calendar.DAY_OF_WEEK);
         System.out.println("\n\n" + dia);
-
-        
     }
 }
