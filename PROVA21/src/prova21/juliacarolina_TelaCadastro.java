@@ -4,8 +4,11 @@
  */
 package prova21;
 
+import java.awt.Color;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,10 +16,10 @@ import java.time.format.DateTimeFormatter;
  */
 public class juliacarolina_TelaCadastro extends javax.swing.JFrame {
 
-    LocalDate dataHoje = LocalDate.now();
     DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    LocalDate dataHoje = LocalDate.now();
+    juliacarolina_Calculo metodos = new juliacarolina_Calculo();
 
-    
     /**
      * Creates new form NewJFrame
      */
@@ -63,6 +66,12 @@ public class juliacarolina_TelaCadastro extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jc_txtArea = new javax.swing.JTextArea();
         data = new javax.swing.JLabel();
+        jc_button_CalcularSituacao = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jc_txtArea_Idade = new javax.swing.JTextArea();
+        jc_button_CalcularIdade1 = new javax.swing.JButton();
+        jc_labelSituacao = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de alunos");
@@ -169,6 +178,37 @@ public class juliacarolina_TelaCadastro extends javax.swing.JFrame {
         data.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         data.setText("data");
 
+        jc_button_CalcularSituacao.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jc_button_CalcularSituacao.setText("Calcular situação");
+        jc_button_CalcularSituacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jc_button_CalcularSituacaoActionPerformed(evt);
+            }
+        });
+
+        jc_txtArea_Idade.setColumns(20);
+        jc_txtArea_Idade.setRows(5);
+        jc_txtArea_Idade.setText("__ anos");
+        jScrollPane2.setViewportView(jc_txtArea_Idade);
+
+        jc_button_CalcularIdade1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jc_button_CalcularIdade1.setText("Calcular idade");
+        jc_button_CalcularIdade1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jc_button_CalcularIdade1ActionPerformed(evt);
+            }
+        });
+
+        jc_labelSituacao.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jc_labelSituacao.setText("Situação");
+
+        jButton1.setText("Sair");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -176,9 +216,12 @@ public class juliacarolina_TelaCadastro extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(189, 189, 189)
+                        .addComponent(data))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,15 +274,24 @@ public class juliacarolina_TelaCadastro extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(jLabel14)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jc_spinnerNotaTres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(291, Short.MAX_VALUE)
-                        .addComponent(jButton2)))
-                .addContainerGap(61, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(189, 189, 189)
-                .addComponent(data)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jc_spinnerNotaTres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jc_button_CalcularSituacao)
+                                    .addComponent(jc_button_CalcularIdade1))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(50, 50, 50)
+                                        .addComponent(jc_labelSituacao)))))))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,11 +340,21 @@ public class juliacarolina_TelaCadastro extends javax.swing.JFrame {
                     .addComponent(jc_spinnerNotaUm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jc_spinnerNotaDois, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jc_spinnerNotaTres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
-                .addGap(31, 31, 31))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jc_button_CalcularIdade1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jc_button_CalcularSituacao)
+                    .addComponent(jc_labelSituacao))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(17, 17, 17))
         );
 
         pack();
@@ -304,13 +366,48 @@ public class juliacarolina_TelaCadastro extends javax.swing.JFrame {
         int n2 = (int) jc_spinnerNotaDois.getValue();
         int n3 = (int) jc_spinnerNotaTres.getValue();
         float media = (n1 + n2 + n3) / 3;
+        metodos.setNotas(n1, n2, n3);
 
         jc_txtArea.setText(jc_txt_Nome.getText()
                 + ",\ndo curso de " + jc_combo_Curso.getSelectedItem()
                 + "\nNotas: " + jc_spinnerNotaUm.getValue() + ", " + jc_spinnerNotaDois.getValue() + ", " + jc_spinnerNotaTres.getValue()
-                + "\nMedia: " + media
+                + "\nMedia: " + media 
+                + "\nSituação: " + metodos.Situacao()
+                + "\nConceito: " + metodos.Conceito()
         );
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jc_button_CalcularSituacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jc_button_CalcularSituacaoActionPerformed
+        // TODO add your handling code here:                      
+        int n1 = (int) jc_spinnerNotaUm.getValue();
+        int n2 = (int) jc_spinnerNotaDois.getValue();
+        int n3 = (int) jc_spinnerNotaTres.getValue();
+        metodos.setNotas(n1, n2, n3);
+
+        jc_labelSituacao.setText("Situação: " + metodos.Situacao() + ". \nConceito " + metodos.Conceito());
+        if (metodos.Situacao().equals("aprovado")) {
+            jc_labelSituacao.setForeground(Color.blue);
+        } else if (metodos.Situacao().equals("recuperação")) {
+            jc_labelSituacao.setForeground(Color.black);
+        }else if (metodos.Situacao().equals("reprovado")) {
+            jc_labelSituacao.setForeground(Color.red);
+        }
+    }//GEN-LAST:event_jc_button_CalcularSituacaoActionPerformed
+
+    private void jc_button_CalcularIdade1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jc_button_CalcularIdade1ActionPerformed
+        // TODO add your handling code here:
+        try {
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Erro na conversão da idade", "Erro", JOptionPane.WARNING_MESSAGE);
+        }
+
+    }//GEN-LAST:event_jc_button_CalcularIdade1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -351,6 +448,7 @@ public class juliacarolina_TelaCadastro extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel data;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -368,11 +466,16 @@ public class juliacarolina_TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton jc_button_CalcularIdade1;
+    private javax.swing.JButton jc_button_CalcularSituacao;
     private javax.swing.JComboBox<String> jc_combo_Curso;
+    private javax.swing.JLabel jc_labelSituacao;
     private javax.swing.JSpinner jc_spinnerNotaDois;
     private javax.swing.JSpinner jc_spinnerNotaTres;
     private javax.swing.JSpinner jc_spinnerNotaUm;
     private javax.swing.JTextArea jc_txtArea;
+    private javax.swing.JTextArea jc_txtArea_Idade;
     private javax.swing.JFormattedTextField jc_txt_Cep;
     private javax.swing.JTextField jc_txt_Email;
     private javax.swing.JFormattedTextField jc_txt_Nascimento;
